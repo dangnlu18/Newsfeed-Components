@@ -85,6 +85,22 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Testing New Article Number 5',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `LALALALALALALALALALALLALA hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `PAPAPAPAPPAPAPAP, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `MAAMMAMAMAMAMAAMM hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -112,3 +128,85 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+//create article content
+
+function createArticle(obj){
+  //article container
+  let article = document.createElement('div');
+  article.classList.add('article');
+  document.body.appendChild(article);
+
+
+  //h2
+  let title = document.createElement('h2');
+  title.textContent = obj.title;
+  article.appendChild(title);
+
+  //p tag for date
+  let date = document.createElement('p');
+  date.classList.add('date');
+  date.textContent = obj.date;
+  article.appendChild(date);
+
+  //p1
+  let p1 = document.createElement('p');
+  p1.textContent = obj.firstParagraph;
+  article.appendChild(p1);
+
+  //p2
+  let p2 = document.createElement('p');
+  p2.textContent = obj.secondParagraph;
+  article.appendChild(p2);
+
+   //p3
+  let p3 = document.createElement('p');
+  p3.textContent = obj.thirdParagraph;
+  article.appendChild(p3);
+
+  //span
+  let span = document.createElement('span');
+  span.classList.add('expandButton');
+  span.textContent = 'Expand';
+  article.appendChild(span);
+
+  return article;
+}
+
+
+
+
+
+
+// let span = document.querySelectorAll('span');
+// span.addEventListener('click', e=>e.target.parentElement.classList.toggle('article-open'));
+
+//add an extra article
+data.push(  {
+    title: 'Test  Article Number 6',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `LALALALALALALALALALALLA6666LA hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `PAPAPAPAPPAPAPA6666P, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `MAAM66666MAMAMAMAMAAMM hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  });
+
+//display each article
+data.forEach(item => createArticle(item));
+
+
+//map over data array
+const articles = data.map(item => createArticle(item));
+
+//span event listener
+let span = document.querySelectorAll('.expandButton');
+span.forEach(span=> span.addEventListener('click', e=> e.target.parentElement.classList.toggle('article-open')));
+
