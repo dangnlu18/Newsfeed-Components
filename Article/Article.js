@@ -85,6 +85,22 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Testing New Article Number 5',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `LALALALALALALALALALALLALA hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `PAPAPAPAPPAPAPAP, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `MAAMMAMAMAMAMAAMM hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -112,3 +128,82 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+//create article content
+
+function articleDate(obj){
+  const date = document.createElement('p');
+  date.classList.add('date');
+  date.textContent = obj.date;
+  return date;
+}
+
+function articleHeader(obj){
+  const header = document.createElement('h2');
+  header.textContent = obj.title;
+  return header;
+}
+
+function articleP1(obj){
+  const p1 = document.createElement('p');
+  p1.textContent = obj.firstParagraph;
+  return p1;
+}
+function articleP2(obj){
+  const p2 = document.createElement('p');
+  p2.textContent = obj.secondParagraph;
+  return p2;
+}
+function articleP3(obj){
+  const p3 = document.createElement('p');
+  p3.textContent = obj.thirdParagraph;
+  return p3;
+}
+
+function articleSpan(obj){
+  const span = document.createElement('span');
+  span.classList.add('expandButton');
+  span.textContent = 'expand';
+
+  return span;
+}
+
+//create article with correct format
+
+function createArticle(obj){
+  const article = document.createElement('div');
+  article.setAttribute('class', 'article');
+  article.appendChild(articleHeader(obj));
+  article.appendChild(articleDate(obj));
+  article.appendChild(articleP1(obj));
+  article.appendChild(articleP2(obj));
+  article.appendChild(articleP3(obj));
+  article.appendChild(articleSpan(obj));
+  document.body.appendChild(article);
+
+  return article;
+}
+
+//display all articles
+data.forEach(item=> createArticle(item));
+
+//add event listener
+
+
+const span = document.querySelectorAll('.expandButton');
+span.forEach(spn => spn.addEventListener('mouseover', e=> e.target.parentElement.classList.toggle('article-open')));
+
+// mapping titles
+
+const titles = data.map(item=> item.title);
+
+// new function to use title array
+
+function createH2(item){
+  const h2 = document.createElement('h2');
+  h2.textContent = item;
+  return h2;
+}
+
+titles.forEach(item => createH2(item));
+
